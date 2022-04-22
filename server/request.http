@@ -1,0 +1,55 @@
+### Register
+
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "tian1",
+  "password": "123"
+}
+
+### Login
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "tian",
+  "password": "123"
+}
+
+### Create post
+
+POST http://localhost:5000/api/posts
+Content-Type: application/json
+Authorization: Beerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjYyNTZjNjA5Mzg5ZDZjYThiZmQ2YzgiLCJpYXQiOjE2NTA2MTU0NjR9.UjdSmqENiANP7SUT6Qzq__hPRHRlF6H6qGgspWkoar0
+
+{
+  "title": "JS",
+  "description": "JS",
+  "url": "JS.com",
+  "status": "LEARNED"
+}
+
+### GET post
+
+GET http://localhost:5000/api/posts
+Authorization: Beerer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjYyNTZjNjA5Mzg5ZDZjYThiZmQ2YzgiLCJpYXQiOjE2NTA2MTU0NjR9.UjdSmqENiANP7SUT6Qzq__hPRHRlF6H6qGgspWkoar0
+
+### Update post
+
+PUT http://localhost:5000/api/posts/6262654076d26247ac9549f6
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjYyNTZjNjA5Mzg5ZDZjYThiZmQ2YzgiLCJpYXQiOjE2NTA2MTU0NjR9.UjdSmqENiANP7SUT6Qzq__hPRHRlF6H6qGgspWkoar0
+
+{
+  "title": "Vue",
+  "description": "VUEEEEE",
+  "url": "https://vuejs.org",
+  "status": "LEARNING"
+}
+
+### DLETE post
+
+DELETE http://localhost:5000/api/posts/6262654076d26247ac9549f6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjYyNTZjNjA5Mzg5ZDZjYThiZmQ2YzgiLCJpYXQiOjE2NTA2MTU0NjR9.UjdSmqENiANP7SUT6Qzq__hPRHRlF6H6qGgspWkoar0
