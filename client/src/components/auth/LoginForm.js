@@ -1,45 +1,42 @@
+import { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-// import { useState, useContext } from "react";
-// import { AuthContext } from "../../contexts/AuthContext";
-// import AlertMessage from "../layout/AlertMessage";
+import { AuthContext } from "../../contexts/AuthContext";
+import AlertMessage from "../layout/AlertMessage";
 
-const LoginForm = () => {
-  // // Context
-  // const { loginUser } = useContext(AuthContext)
+const LoginForm = ({ store }) => {
+  // Context
+  const { loginUser } = useContext(AuthContext);
 
-  // // Local state
-  // const [loginForm, setLoginForm] = useState({
-  // 	username: '',
-  // 	password: ''
-  // })
+  // Local state
+  const [loginForm, setLoginForm] = useState({
+    username: "",
+    password: "",
+  });
 
-  // const [alert, setAlert] = useState(null)
+  const [alert, setAlert] = useState(null);
 
-  // const { username, password } = loginForm
+  const onChangeLoginForm = (e) =>
+    setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
 
-  // const onChangeLoginForm = event =>
-  // 	setLoginForm({ ...loginForm, [event.target.name]: event.target.value })
-
-  // const login = async event => {
-  // 	event.preventDefault()
-
-  // 	try {
-  // 		const loginData = await loginUser(loginForm)
-  // 		if (!loginData.success) {
-  // 			setAlert({ type: 'danger', message: loginData.message })
-  // 			setTimeout(() => setAlert(null), 5000)
-  // 		}
-  // 	} catch (error) {
-  // 		console.log(error)
-  // 	}
-  // }
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const loginData = await loginUser(loginForm);
+      if (!loginData.success) {
+        setAlert({ type: "danger", message: loginData.message });
+        setTimeout(() => setAlert(null), 3000);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
-      <Form className="my-4">
-        {/* <AlertMessage info={alert} /> */}
+      <Form className="my-4" onSubmit={handleLogin}>
+        <AlertMessage info={alert} />
 
         <Form.Group className="mb-3">
           <Form.Control
@@ -47,6 +44,8 @@ const LoginForm = () => {
             placeholder="Username"
             name="username"
             required
+            value={loginForm.username}
+            onChange={onChangeLoginForm}
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -55,6 +54,8 @@ const LoginForm = () => {
             placeholder="Password"
             name="password"
             required
+            value={loginForm.password}
+            onChange={onChangeLoginForm}
           />
         </Form.Group>
         <Button variant="success" type="submit">
